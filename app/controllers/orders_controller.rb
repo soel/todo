@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
 
   def show
     respond_with(@order)
+    
   end
 
   def new
@@ -21,7 +22,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
+    #@order = Order.new(order_params)
+    @order = current_user.order.new(order_params)
     @order.save
     respond_with(@order)
   end
@@ -42,6 +44,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:contract_number, :customer_id, :request_destination, :delivery_date, :status, :create_at, :web_url)
+      params.require(:order).permit(:contract_number, :customer_id, :request_destination, :delivery_date, :status, :create_at, :web_url, :user_id)
     end
 end
