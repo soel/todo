@@ -23,17 +23,16 @@
     <%= f.label :request_destination %><br>
     <%= f.text_area :request_destination %>
   </div>
+<% if @order.new_record? %>
+<% else %>
   <div class="field">
     <%= f.label :delivery_date %><br>
-    <%= f.date_select :delivery_date %>
+    <%= f.date_select :delivery_date, :include_blank => true %>
   </div>
+<% end %>
   <div class="field">
     <%= f.label :status %><br>
     <%= f.text_area :status %>
-  </div>
-  <div class="field">
-    <%= f.label :create_at %><br>
-    <%= f.date_select :create_at %>
   </div>
   <div class="field">
     <%= f.label :web_url %><br>
