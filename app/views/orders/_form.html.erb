@@ -27,7 +27,7 @@
 <% else %>
   <div class="field">
     <%= f.label :delivery_date %><br>
-    <%= f.date_select :delivery_date, :include_blank => true %>
+    <%= f.date_select :delivery_date, :include_blank => true, :start_year => Date.today.year %>
   </div>
 <% end %>
   <div class="field">
