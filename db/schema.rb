@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120092053) do
+ActiveRecord::Schema.define(version: 20150121002418) do
+
+  create_table "orders", force: true do |t|
+    t.integer  "contract_number"
+    t.integer  "customer_id"
+    t.text     "request_destination"
+    t.date     "delivery_date"
+    t.text     "status"
+    t.text     "web_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
