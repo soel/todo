@@ -11,7 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121061200) do
+ActiveRecord::Schema.define(version: 20150122093102) do
+
+  create_table "grmails", force: true do |t|
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "grmails_groups", id: false, force: true do |t|
+    t.integer "group_id",  null: false
+    t.integer "grmail_id", null: false
+  end
+
+  add_index "grmails_groups", ["grmail_id"], name: "index_grmails_groups_on_grmail_id"
+  add_index "grmails_groups", ["group_id"], name: "index_grmails_groups_on_group_id"
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups_grmails", id: false, force: true do |t|
+    t.integer "group_id",  null: false
+    t.integer "grmail_id", null: false
+  end
+
+  add_index "groups_grmails", ["grmail_id"], name: "index_groups_grmails_on_grmail_id"
+  add_index "groups_grmails", ["group_id"], name: "index_groups_grmails_on_group_id"
 
   create_table "orders", force: true do |t|
     t.integer  "contract_number"

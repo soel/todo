@@ -1,0 +1,2 @@
+module GrmailsHelper
+end

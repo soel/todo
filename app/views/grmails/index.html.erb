@@ -1,0 +1,25 @@
+<h1>Listing grmails</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grmails.each do |grmail| %>
+      <tr>
+        <td><%= grmail.email %></td>
+        <td><%= link_to 'Show', grmail %></td>
+        <td><%= link_to 'Edit', edit_grmail_path(grmail) %></td>
+        <td><%= link_to 'Destroy', grmail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Grmail', new_grmail_path %>

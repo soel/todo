@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :grmails
+
+  resources :groups
+
   resources :orders
 
   devise_for :users, :controllers => {
