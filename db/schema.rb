@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150122093102) do
+ActiveRecord::Schema.define(version: 20150123082609) do
 
   create_table "grmails", force: true do |t|
     t.string   "email"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(version: 20150122093102) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  create_table "orders_users", id: false, force: true do |t|
+    t.integer "order_id", null: false
+    t.integer "user_id",  null: false
+  end
+
+  add_index "orders_users", ["order_id"], name: "index_orders_users_on_order_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

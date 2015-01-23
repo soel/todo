@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @user = current_user
     @order = Order.new
     respond_with(@order)
   end
@@ -45,6 +46,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.require(:order).permit(:contract_number, :customer_id, :request_destination, :delivery_date, :status, :create_at, :web_url, :user_id)
+      params.require(:order).permit(:contract_number, :customer_id, :request_destination, :delivery_date, :status, :create_at, :web_url, :user_id, :user_ids => [] )
     end
 end
