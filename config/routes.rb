@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :groups
 
-  resources :orders
+  resources :orders do
+    resources :comments
+  end
 
   devise_for :users, :controllers => {
     :registrations => "users/registrations"
