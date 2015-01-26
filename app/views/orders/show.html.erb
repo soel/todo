@@ -12,7 +12,9 @@
 
 <p>
   <strong>依頼先:</strong>
-  <%= @order.request_destination %>
+  <% @order.groups.each do |group| %>
+  <%= group.name %>
+  <% end %>
 </p>
 
 <p>

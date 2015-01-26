@@ -20,8 +20,8 @@
     <%= f.number_field :customer_id %>
   </div>
   <div class="field">
-    <%= f.label :request_destination, '依頼先' %><br>
-    <%= f.collection_select :request_destination, @group, :name, :name %>
+    <%= f.label :group_ids, '依頼先' %><br>
+    <%= f.collection_select :group_ids, @group, :id, :name, {}, {multiple: true} %>
   </div>
   
 <% if @order.new_record? %>
