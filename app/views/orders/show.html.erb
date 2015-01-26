@@ -1,32 +1,32 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Contract number:</strong>
+  <strong>契約番号:</strong>
   <%= @order.contract_number %>
 </p>
 
 <p>
-  <strong>Customer:</strong>
+  <strong>顧客番号:</strong>
   <%= @order.customer_id %>
 </p>
 
 <p>
-  <strong>Request destination:</strong>
+  <strong>依頼先:</strong>
   <%= @order.request_destination %>
 </p>
 
 <p>
-  <strong>Delivery date:</strong>
+  <strong>予定納期:</strong>
   <%= @order.delivery_date %>
 </p>
 
 <p>
-  <strong>Status:</strong>
+  <strong>ステータス:</strong>
   <%= @order.status %>
 </p>
 
 <p>
-  <strong>Create at:</strong>
+  <strong>作成日:</strong>
   <%= @order.created_at %>
 </p>
 
@@ -36,7 +36,7 @@
 </p>
 
 <p>
-  <strong>user:</strong>
+  <strong>作成者</strong>
   <% @order.users.each do |user| %>
   <%= user.username %>
   <% end %>
