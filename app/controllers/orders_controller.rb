@@ -16,11 +16,14 @@ class OrdersController < ApplicationController
 
   def new
     @user = current_user
+    @group = Group.all
     @order = Order.new
     respond_with(@order)
   end
 
   def edit
+    @user = User.all
+    @group = Group.all
   end
 
   def create
