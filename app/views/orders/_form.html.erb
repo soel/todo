@@ -12,42 +12,38 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :contract_number %><br>
+    <%= f.label :contract_number, '契約番号' %><br>
     <%= f.number_field :contract_number %>
   </div>
   <div class="field">
-    <%= f.label :customer_id %><br>
+    <%= f.label :customer_id, '顧客番号' %><br>
     <%= f.number_field :customer_id %>
   </div>
   <div class="field">
-    <%= f.label :request_destination %><br>
+    <%= f.label :request_destination, '依頼先' %><br>
     <%= f.text_area :request_destination %>
   </div>
 <% if @order.new_record? %>
 <% else %>
   <div class="field">
-    <%= f.label :delivery_date %><br>
+    <%= f.label :delivery_date, '予定納期' %><br>
     <%= f.date_select :delivery_date, :include_blank => true, :start_year => Date.today.year %>
   </div>
 <% end %>
   <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_area :status %>
+    <%= f.label :status, 'ステータス' %><br>
+    <%= f.select :status, ['確認中', '着手中', '作業完了'] %>
   </div>
   <div class="field">
     <%= f.label :web_url %><br>
     <%= f.text_area :web_url %>
   </div>
-<% if false %>
-  <div class="field">
-  	<%= f.label :user_id %><br>
-  	<%= f.number_field :user_id %>
-  </div>
-<% end %>
+<% if @order.new_record? %>
 	<div>
 	  <%= f.check_box 'user_ids', {:name => 'order[users_ids][]', :checked => true }, @user.id, nil %>
 	  <%= @user.username %>
 	</div>
+<% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
