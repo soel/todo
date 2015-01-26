@@ -22,13 +22,12 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @user = User.all
     @group = Group.all
   end
 
   def create
-    #@order = Order.new(order_params)
-    @order = current_user.orders.new(order_params)
+    @order = Order.new(order_params)
+    #@order = current_user.orders.new(order_params)
     @order.save
     respond_with(@order)
   end

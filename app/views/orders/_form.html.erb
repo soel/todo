@@ -19,10 +19,12 @@
     <%= f.label :customer_id, '顧客番号' %><br>
     <%= f.number_field :customer_id %>
   </div>
+  <% if false %>
   <div class="field">
     <%= f.label :group_ids, '依頼先' %><br>
     <%= f.collection_select :group_ids, @group, :id, :name, {}, {multiple: true} %>
   </div>
+  <% end %>
   
 <% if @order.new_record? %>
 <% else %>
@@ -41,7 +43,7 @@
   </div>
 <% if @order.new_record? %>
 	<div>
-	  <%= f.check_box 'user_ids', {:name => 'order[users_ids][]', :checked => true }, @user.id, nil %>
+	  <%= f.check_box 'user_ids', {:name => 'order[user_ids][]', :checked => true }, @user.id, nil %>
 	  <%= @user.username %>
 	</div>
 <% end %>
