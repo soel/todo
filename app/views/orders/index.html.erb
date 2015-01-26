@@ -25,9 +25,9 @@
         <td><%= order.created_at %></td>
         <td><%= order.delivery_date %></td>
         <td><%= order.web_url %></td>
-        <% if false %>
-        <td><%= order.user.username %></td>
-        <% end %>
+	<% order.users.each do |user| %>
+        <td><%= user.username %></td>
+	<% end %>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
