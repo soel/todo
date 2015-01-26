@@ -39,9 +39,7 @@
 
 <p>
   <strong>作成者</strong>
-  <% @order.users.each do |user| %>
-  <%= user.username %>
-  <% end %>
+  <%= @order.users.first.username %>
 </p>
 
 <h2>コメント</h2>
