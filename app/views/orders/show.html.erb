@@ -37,7 +37,9 @@
 
 <p>
   <strong>user:</strong>
-  <%= @order.users.username %>
+  <% @order.users.each do |user| %>
+  <%= user.username %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

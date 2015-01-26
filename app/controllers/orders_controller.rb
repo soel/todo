@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def create
     #@order = Order.new(order_params)
-    @order = current_user.order.new(order_params)
+    @order = current_user.orders.new(order_params)
     @order.save
     respond_with(@order)
   end

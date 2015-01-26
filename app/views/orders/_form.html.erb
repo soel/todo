@@ -45,7 +45,7 @@
   </div>
 <% end %>
 	<div>
-	  <%= f.check_box :user_ids, {:name => 'order[users_ids][]', :checked => true }, @user.id, nil %>
+	  <%= f.check_box 'user_ids', {:name => 'order[users_ids][]', :checked => true }, @user.id, nil %>
 	  <%= @user.username %>
 	</div>
   <div class="actions">
