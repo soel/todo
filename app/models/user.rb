@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable, :confirmable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
 
   # allow users to update their accounts without passwords
   def update_without_current_password(params, *options)
