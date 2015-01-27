@@ -26,6 +26,16 @@
   </div>
 
   <%= f.label :document, '添付ファイル' %><br>
+  <div>
+  <% unless @order.new_record?%>
+  <% @order_attachments.each do |o| %>
+	<% if o.document_url.present? %>
+		<%= File.basename o.document_url%><br>
+	<% end %>
+  <% end %>
+  </div>
+  <% end %>
+  
   <%= f.fields_for :order_attachments do |o| %>
   <div class="field">
   	<%= o.file_field :document %>

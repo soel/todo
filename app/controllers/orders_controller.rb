@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
 
   def edit
     @group = Group.all
+    @order_attachments = @order.order_attachments.all
   end
 
   def create
