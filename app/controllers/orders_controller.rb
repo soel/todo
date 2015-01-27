@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
 
   def show
     @user = current_user
+    @order_attachments = @order.order_attachments.all
     respond_with(@order)
     
   end
@@ -19,6 +20,7 @@ class OrdersController < ApplicationController
     @user = current_user
     @group = Group.all
     @order = Order.new
+    @order_attachment = @order.order_attachments.build
     respond_with(@order)
   end
 
@@ -30,6 +32,10 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     #@order = current_user.orders.new(order_params)
     @order.save
+    params[:order_attachments]['document'].each do |d|
+      @order_attachment = @order.order_attachments.create!(:document => d, :order_id => @order.id)
+    end
+    
     respond_with(@order)
   end
 
@@ -50,6 +56,7 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:contract_number, :customer_id, :request_destination, :delivery_date, 
-      :status, :create_at, :web_url, :user_id, :user_ids => [], :group_ids => [] )
+      :status, :create_at, :web_url, :user_id, order_attachments_attributes: [:id, :order_id, :document],
+      :user_ids => [], :group_ids => [] )
     end
 end

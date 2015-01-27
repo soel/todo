@@ -25,6 +25,12 @@
     <%= f.collection_select :group_ids, @group, :id, :name, {}, {multiple: true} %>
   </div>
 
+  <%= f.fields_for :order_attachments do |o| %>
+  <div class="field">
+  	<%= o.label :document %><br>
+  	<%= o.file_field :document, multiple: true, name: "order_attachments[document][]"%>
+  </div>
+  <% end %>
   
 <% if @order.new_record? %>
 <% else %>

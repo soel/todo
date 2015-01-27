@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  resources :order_attachments
+
   devise_for :users, :controllers => {
     :registrations => "users/registrations"
   }
