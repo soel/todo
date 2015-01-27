@@ -32,9 +32,9 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     #@order = current_user.orders.new(order_params)
     @order.save
-    params[:order_attachments]['document'].each do |d|
-      @order_attachment = @order.order_attachments.create!(:document => d, :order_id => @order.id)
-    end
+    #params[:order_attachments]['document'].each do |d|
+    #  @order_attachment = @order.order_attachments.create!(:document => d, :order_id => @order.id)
+    #end
     
     respond_with(@order)
   end

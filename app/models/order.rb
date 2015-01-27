@@ -4,5 +4,5 @@ class Order < ActiveRecord::Base
   has_many :comments
   
   has_many :order_attachments
-  accepts_nested_attributes_for :order_attachments
+  accepts_nested_attributes_for :order_attachments, allow_destroy: true
 end

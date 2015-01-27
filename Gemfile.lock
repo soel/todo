@@ -66,6 +66,7 @@ GEM
     mime-types (2.4.3)
     minitest (5.5.1)
     multi_json (1.10.1)
+    nested_form (0.3.2)
     orm_adapter (0.5.0)
     pg (0.18.1)
     rack (1.5.2)
@@ -151,6 +152,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 2.0)
   jquery-rails
+  nested_form
   pg
   rails (= 4.1.9)
   rails_12factor
