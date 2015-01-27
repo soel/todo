@@ -20,8 +20,10 @@
 <p>
 	<strong>添付ファイル:</strong><br>
 	<% @order_attachments.each do |o| %>
+	<% if o.document_url.present? %>
 	<%= File.basename o.document_url %>
 	<%= link_to "edit file", edit_order_attachment_path(o)%><br>
+	<% end %>
 	<% end %>
 </p>
 
