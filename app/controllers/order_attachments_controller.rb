@@ -13,8 +13,9 @@ class OrderAttachmentsController < ApplicationController
   end
 
   def new
-    @order_attachment = OrderAttachment.new
+    @order_attachment = OrderAttachment.new(:order_id => params[:order_id])
     respond_with(@order_attachment)
+    #redirect_to order_path(1)
   end
 
   def edit
@@ -23,7 +24,8 @@ class OrderAttachmentsController < ApplicationController
   def create
     @order_attachment = OrderAttachment.new(order_attachment_params)
     @order_attachment.save
-    respond_with(@order_attachment)
+    #respond_with(@order_attachment)
+    redirect_to order_path(@order_attachment.order_id)
   end
 
   def update

@@ -28,7 +28,7 @@
   <%= f.label :document, '添付ファイル' %><br>
   <div>
   <% unless @order.new_record?%>
-  <% @order_attachments.each do |o| %>
+  <% @ordera.each do |o| %>
 	<% if o.document_url.present? %>
 		<%= File.basename o.document_url%><br>
 	<% end %>
@@ -36,6 +36,7 @@
   </div>
   <% end %>
   
+  <% if @order.new_record? %>
   <%= f.fields_for :order_attachments do |o| %>
   <div class="field">
   	<%= o.file_field :document %>
@@ -43,6 +44,9 @@
   </div>
   <% end %>
   <%= f.link_to_add "フィールドの追加", :order_attachments %>
+  <% else %>
+  <%= link_to '添付ファイルの追加', controller: "order_attachments", action: "new", order_id: @order.id%>
+  <% end %>
   
 <% if @order.new_record? %>
 <% else %>

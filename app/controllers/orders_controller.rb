@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
 
   def edit
     @group = Group.all
-    @order_attachments = @order.order_attachments.all
+    @order_attachments = @order.order_attachments.new
+    @ordera = @order.order_attachments.all
   end
 
   def create

@@ -12,6 +12,11 @@
   <% end %>
 
   <div class="field">
+  	<%= f.label :order_id %>
+  	<%= f.number_field :order_id %>
+  </div>
+
+  <div class="field">
     <%= f.label :document %><br>
     <%= f.file_field :document %>
   </div>
