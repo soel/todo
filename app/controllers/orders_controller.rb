@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     @usera = User.all
     @group = Group.all
     @order = Order.new
-    @order_attachment = @order.order_attachments.build
+    #@order_attachment = @order.order_attachments.build
     respond_with(@order)
   end
 
@@ -33,25 +33,31 @@ class OrdersController < ApplicationController
   end
 
   def create
+    #@order = Order.new
     @order = Order.new(order_params)
     #@order = current_user.orders.new(order_params)
     #@order.save
     #params[:order_attachments]['document'].each do |d|
     #  @order_attachment = @order.order_attachments.create!(:document => d, :order_id => @order.id)
     #end
-    respond_to do |format|
+    #respond_to do |format|
       if @order.save
         user = @order.users[0]
       
         OrderMailer.order_email(user, @order).deliver
-      
-        format.html { redirect_to @order, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
+        
+        if @order.multi == "true"
+          redirect_to copy_order_path(@order.id)
+        else
+          redirect_to @order, notice: 'Post was successfully created.'
+          #format.html { redirect_to @order, notice: 'Post was successfully created.' }
+          #format.json { render :show, status: :created, location: @order }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        #format.html { render :new }
+        #format.json { render json: @order.errors, status: :unprocessable_entity }
       end
-    end
+    #end
     #respond_with(@order)
   end
 
@@ -65,6 +71,17 @@ class OrdersController < ApplicationController
     respond_with(@order)
   end
 
+  def copy
+    @user = current_user
+    @usera = User.all
+    @group = Group.all
+    @old = Order.find(params[:id])
+    @order = Order.new
+    @order.attributes = @old.attributes
+    
+    render :action => "new"
+  end
+
   private
     def set_order
       @order = Order.find(params[:id])
@@ -72,7 +89,7 @@ class OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:contract_number, :customer_id, :request_destination, :delivery_date, 
-      :status, :create_at, :web_url, :user_id, order_attachments_attributes: [:id, :order_id, :document],
-      :user_ids => [], :group_ids => [] )
+      :status, :create_at, :web_url, :user_id, :multi, :group_id, order_attachments_attributes: [:id, :order_id, :document],
+      :user_ids => [], :group_ids => [], :order_attachment_ids => [] )
     end
 end

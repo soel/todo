@@ -12,17 +12,22 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :group_id, '依頼先' %><br>
+    <%= f.collection_select :group_id, @group, :id, :name, {} %>
+  </div>
+  <% if @order.new_record? %>
+  <div class="field">
+  	<%= f.label :multi, '複数依頼する'%>
+  	<%= f.check_box :multi, {}, true, false %>
+  <% end %>
+
+  <div class="field">
     <%= f.label :contract_number, '契約番号' %><br>
     <%= f.number_field :contract_number %>
   </div>
   <div class="field">
     <%= f.label :customer_id, '顧客番号' %><br>
     <%= f.number_field :customer_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :group_ids, '依頼先' %><br>
-    <%= f.collection_select :group_ids, @group, :id, :name, {}, {multiple: true} %>
   </div>
 
   <%= f.label :document, '添付ファイル' %><br>
@@ -35,17 +40,11 @@
   <% end %>
   </div>
   <% end %>  
-  <% if @order.new_record? %>
-  <%= f.fields_for :order_attachments do |o| %>
+
   <div class="field">
-  	<%= o.file_field :document %>
-  	<%= o.link_to_remove "フィールド削除" %>
+  	<%= f.label :order_attachment_ids %><br>
+  	<%= f.file_field :order_attachment_ids, multiple: true %>
   </div>
-  <% end %>
-  <%= f.link_to_add "フィールドの追加", :order_attachments %>
-  <% else %>
-  <%= link_to '添付ファイルの追加', controller: "order_attachments", action: "new", order_id: @order.id%>
-  <% end %>
   
 <% if @order.new_record? %>
 <% else %>

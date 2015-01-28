@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :orders do
     resources :comments
+    member do
+      get :copy
+    end
   end
 
   resources :order_attachments
