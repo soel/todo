@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
 
   def new
     @user = current_user
+    @usera = User.all
     @group = Group.all
     @order = Order.new
     @order_attachment = @order.order_attachments.build
@@ -26,6 +27,7 @@ class OrdersController < ApplicationController
 
   def edit
     @group = Group.all
+    @usera = User.all
     @order_attachments = @order.order_attachments.new
     @ordera = @order.order_attachments.all
   end

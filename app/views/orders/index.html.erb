@@ -30,7 +30,7 @@
         <td><%= order.delivery_date %></td>
         <td><%= order.web_url %></td>
         <td>
-		<%= order.users.first.username %>
+		<%= order.users[0].username %>
 		</td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>

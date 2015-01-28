@@ -50,7 +50,16 @@
 
 <p>
   <strong>作成者</strong>
-  <%= @order.users.first.username %>
+  <%= @order.users[0].username %>
+</p>
+
+<p>
+	<strong>メンバー</strong>
+	<% if @order.users.length >= 2 %>
+		<% @order.users[1..-1].each do |member| %>
+		<%= member.username %>
+		<% end %>
+	<% end %>
 </p>
 
 <h2>コメント</h2>
