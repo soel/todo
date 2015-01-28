@@ -35,12 +35,24 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     #@order = current_user.orders.new(order_params)
-    @order.save
+    #@order.save
     #params[:order_attachments]['document'].each do |d|
     #  @order_attachment = @order.order_attachments.create!(:document => d, :order_id => @order.id)
     #end
-    
-    respond_with(@order)
+    respond_to do |format|
+      if @order.save
+        user = @order.users[0]
+      
+        OrderMailer.order_email(user, @order).deliver
+      
+        format.html { redirect_to @order, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @order }
+      else
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+    #respond_with(@order)
   end
 
   def update
