@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127023914) do
+ActiveRecord::Schema.define(version: 20150127233822) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -84,6 +84,17 @@ ActiveRecord::Schema.define(version: 20150127023914) do
   end
 
   add_index "orders_users", ["order_id"], name: "index_orders_users_on_order_id"
+
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_users", id: false, force: true do |t|
+    t.integer "user_id", null: false
+    t.integer "role_id", null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
