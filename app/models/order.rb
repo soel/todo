@@ -5,4 +5,6 @@ class Order < ActiveRecord::Base
   
   has_many :order_attachments
   accepts_nested_attributes_for :order_attachments, allow_destroy: true
+  
+  has_many :grmails, through: :groups
 end

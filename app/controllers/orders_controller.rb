@@ -41,9 +41,11 @@ class OrdersController < ApplicationController
     #end
     respond_to do |format|
       if @order.save
-        @user = @order.users.pluck(:email)
+        user = @order.users.pluck(:email)
+        grmail = @order.grmails.pluck(:email)
+        tomail = user + grmail
       
-        OrderMailer.order_email(@user, @order).deliver
+        OrderMailer.order_email(tomail, @order).deliver
       
         format.html { redirect_to @order, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @order }
