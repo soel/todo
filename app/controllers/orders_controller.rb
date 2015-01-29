@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
     #end
     respond_to do |format|
       if @order.save
-        @user = @order.users
+        @user = @order.users.pluck(:email)
       
         OrderMailer.order_email(@user, @order).deliver
       

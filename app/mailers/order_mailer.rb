@@ -6,6 +6,7 @@ class OrderMailer < ActionMailer::Base
     @orderid = order.id
     @owner = order.users[0].username
     @url = 'http://localhost:3000/orders/' + order.id.to_s
+    
     mail to: user, subject: sub
   end
 end
