@@ -20,8 +20,9 @@ class CommentsController < ApplicationController
     end
     
     ordermember = @order.users.pluck(:email)
+    ordergroup = @order.grmails.pluck(:email)
     
-    tomail = users + ordermember
+    tomail = users + ordermember + ordergroup
     tomail.uniq!
     
     CommentMailer.comment_email(tomail, @order).deliver

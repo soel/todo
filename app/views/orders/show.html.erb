@@ -21,7 +21,6 @@
 	<% if o.document_url.present? %>
 	<% name = File.basename o.document_url%>
 	<%= link_to(name, o.document_url) %>
-	<%= link_to "edit file", edit_order_attachment_path(o)%><br>
 	<% end %>
 	<% end %>
 </p>

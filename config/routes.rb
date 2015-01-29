@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-  resources :commentattachments
+  resources :commentattachments, except: [:edit, :destroy]
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :grmails
 
   resources :groups
 
-  resources :orders do
+  resources :orders, except: [:destroy] do
     resources :comments
   end
 
-  resources :order_attachments
+  resources :order_attachments, except: [:edit, :destroy]
 
   devise_for :users, :controllers => {
     :registrations => "users/registrations"
