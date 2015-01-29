@@ -72,11 +72,13 @@
 	<strong>コメント:</strong>
 	<%= simple_format comment.body %>
 	
+	<% if comment.commentattachments.present? %>
 	<strong>添付ファイル</strong><br>
 	<% comment.commentattachments.each do |a| %>
 	<%if a.document_url.present?%>
 	  <% commname = File.basename a.document_url%>
 	  <%= link_to(commname, a.document_url) %><br>
+	<% end %>
 	<% end %>
 	<% end %>
 </p>

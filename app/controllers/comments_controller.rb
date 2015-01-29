@@ -5,8 +5,10 @@ class CommentsController < ApplicationController
     @order = Order.find(params[:order_id])
     @comment = @order.comments.create(comment_params)
     
-    params[:commentattachments]['document'].each do |a|
-      @commentattachment = @comment.commentattachments.create!(:document => a, :comment_id => @comment.id)
+    if params[:commentattachments].present?
+      params[:commentattachments]['document'].each do |a|
+        @commentattachment = @comment.commentattachments.create!(:document => a, :comment_id => @comment.id)
+      end
     end
     
     commenter = @order.comments.pluck(:user_id)
