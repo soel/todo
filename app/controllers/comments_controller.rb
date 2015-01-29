@@ -5,6 +5,21 @@ class CommentsController < ApplicationController
     @order = Order.find(params[:order_id])
     @comment = @order.comments.create(comment_params)
     
+    commenter = @order.comments.pluck(:user_id)
+    commenter.uniq!
+    
+    users = []
+    commenter.each do | c |
+      users << User.find(c).email
+    end
+    
+    ordermember = @order.users.pluck(:email)
+    
+    tomail = users + ordermember
+    tomail.uniq!
+    
+    CommentMailer.comment_email(tomail, @order).deliver
+    
     redirect_to order_path(@order)
   end
   

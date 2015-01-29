@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_and_belongs_to_many :roles
   
+  
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :confirmable and :omniauthable
