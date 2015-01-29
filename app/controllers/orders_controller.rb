@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
 
   def new
     @user = current_user
-    @usera = User.all
+    @usera = User.where.not(id: @user.id)
     @group = Group.all
     @order = Order.new
     @order_attachment = @order.order_attachments.build
@@ -41,9 +41,9 @@ class OrdersController < ApplicationController
     #end
     respond_to do |format|
       if @order.save
-        user = @order.users[0]
+        @user = @order.users
       
-        OrderMailer.order_email(user, @order).deliver
+        OrderMailer.order_email(@user, @order).deliver
       
         format.html { redirect_to @order, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @order }
