@@ -5,6 +5,10 @@ class CommentsController < ApplicationController
     @order = Order.find(params[:order_id])
     @comment = @order.comments.create(comment_params)
     
+    params[:commentattachments]['document'].each do |a|
+      @commentattachment = @comment.commentattachments.create!(:document => a, :comment_id => @comment.id)
+    end
+    
     commenter = @order.comments.pluck(:user_id)
     commenter.uniq!
     
@@ -25,6 +29,6 @@ class CommentsController < ApplicationController
   
   private
     def comment_params
-      params.require(:comment).permit(:commenter, :body, :user_id)
+      params.require(:comment).permit(:commenter, :body, :user_id, commentattachments_attributes: [:id, :post_id, :document])
     end
 end

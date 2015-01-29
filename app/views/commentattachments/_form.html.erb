@@ -1,0 +1,25 @@
+<%= form_for(@commentattachment) do |f| %>
+  <% if @commentattachment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@commentattachment.errors.count, "error") %> prohibited this commentattachment from being saved:</h2>
+
+      <ul>
+      <% @commentattachment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :comment_id %><br>
+    <%= f.number_field :comment_id %>
+  </div>
+  <div class="field">
+    <%= f.label :document %><br>
+    <%= f.text_field :document %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

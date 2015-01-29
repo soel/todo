@@ -1,0 +1,27 @@
+<h1>Listing commentattachments</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Document</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @commentattachments.each do |commentattachment| %>
+      <tr>
+        <td><%= commentattachment.comment_id %></td>
+        <td><%= commentattachment.document %></td>
+        <td><%= link_to 'Show', commentattachment %></td>
+        <td><%= link_to 'Edit', edit_commentattachment_path(commentattachment) %></td>
+        <td><%= link_to 'Destroy', commentattachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Commentattachment', new_commentattachment_path %>
