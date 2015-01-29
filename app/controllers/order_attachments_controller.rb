@@ -39,6 +39,11 @@ class OrderAttachmentsController < ApplicationController
     respond_with(@order_attachment)
   end
 
+  def download
+    path = "#{Rails.root}/uploads/order_attachment/document/#{params[:id]}/#{params[:basename]}.#{params[:extension]}"
+    send_file path
+  end
+
   private
     def set_order_attachment
       @order_attachment = OrderAttachment.find(params[:id])
